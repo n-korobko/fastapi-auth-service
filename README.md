@@ -181,4 +181,65 @@ The file is returned as a downloadable PDF response.
 
 ---
 
+# API Request Examples
+
+## 🔹 Register User
+
+```bash
+curl -X POST http://localhost:8000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Anna",
+    "surname": "Smith",
+    "email": "anna@example.com",
+    "date_of_birth": "2000-01-01",
+    "password": "password123"
+  }'
+```
+
+---
+
+## 🔹 Login
+
+```bash
+curl -X POST http://localhost:8000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "anna@example.com",
+    "password": "password123"
+  }'
+```
+
+Response example:
+
+```json
+{
+  "access_token": "your_jwt_token",
+  "token_type": "bearer"
+}
+```
+
+---
+
+## 🔹 Get Protected Profile (with JWT)
+
+```bash
+curl -X GET http://localhost:8000/auth/me \
+  -H "Authorization: Bearer your_jwt_token"
+```
+
+---
+
+## 🔹 Generate PDF Profile
+
+```bash
+curl -X GET http://localhost:8000/auth/me/pdf \
+  -H "Authorization: Bearer your_jwt_token" \
+  --output profile.pdf
+```
+
+---
+
+
 FastAPI Authentication Service
+
