@@ -18,8 +18,3 @@ async def db_check():
     async with engine.connect() as conn:
         result = await conn.execute(text("SELECT 1"))
         return {"db_response": result.scalar()}
-
-@app.on_event("startup")
-async def on_startup():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
